@@ -17,10 +17,10 @@ const Login = () => {
 
       {/* Right Section */}
       <div className="col-span-6 flex justify-center">
-        <div className="bg-white w-[400px] p-8 rounded-lg shadow-md">
+        <div className="bg-white w-[500px] p-8 rounded-lg shadow-md">
           {/* Role Selection */}
           <div className="flex justify-between mb-6">
-            <div className="flex items-center p-4 border border-[#5F6EF1] rounded cursor-pointer">
+            <div className="flex items-center p-4 w-[200px] bg-[#F0F4FB] border border-[#5F6EF1] rounded cursor-pointer">
               <input
                 type="radio"
                 name="user-role"
@@ -30,7 +30,7 @@ const Login = () => {
                 Teacher
               </label>
             </div>
-            <div className="flex items-center p-4 border border-[#5F6EF1] rounded cursor-pointer">
+            <div className="flex items-center p-4 w-[200px] bg-[#F0F4FB] border border-[#5F6EF1] rounded cursor-pointer">
               <input
                 type="radio"
                 name="user-role"
@@ -45,21 +45,21 @@ const Login = () => {
           {/* Login Form */}
           <form>
             <div className="mb-4">
-              <label className="block text-sm font-semibold mb-2 text-gray-700">
+              <label className="block text-sm mb-2 text-[#212529]">
                 Username
               </label>
               <input
                 type="text"
-                className="w-full border border-gray-300 rounded px-3 py-2 text-gray-700 focus:outline-none focus:border-blue-500"
+                className="w-full border border-gray-300 rounded px-3 py-2  focus:outline-none focus:border-blue-500"
               />
             </div>
             <div className="mb-4">
-              <label className="block text-sm font-semibold mb-2 text-gray-700">
+              <label className="block text-sm  mb-2 text-[#212529]">
                 Password
               </label>
               <input
                 type="password"
-                className="w-full border border-gray-300 rounded px-3 py-2 text-gray-700 focus:outline-none focus:border-blue-500"
+                className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-blue-500"
               />
             </div>
             <div className="flex items-center mb-4">
@@ -67,19 +67,19 @@ const Login = () => {
                 type="checkbox"
                 className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-0 focus:ring-offset-0"
               />
-              <label className="ml-2 text-sm text-gray-700">Remember me</label>
+              <label className="ml-2 text-sm text-[#212529]">Remember me</label>
             </div>
-            <button className="w-full bg-blue-600 text-white py-2 rounded font-semibold hover:bg-blue-700">
+            <button className="w-[80px] bg-[#4154F1] text-white py-2 rounded">
               Sign in
             </button>
-            <div className="text-center mt-4">
-              <a href="#" className="text-sm text-blue-600 hover:underline">
+            <div className="text-left mt-4">
+              <a href="#" className="text-xs text-[#6C757D]">
                 Forgot password?
               </a>
             </div>
-            <div className="text-center mt-4 text-sm text-gray-600">
+            <div className="text-left mt-4 text-base text-[#212529]">
               Don't have an account?{" "}
-              <a href="#" className="text-blue-600 hover:underline">
+              <a href="#" className="text-[#0DCAF0] text-sm">
                 Register here
               </a>
             </div>

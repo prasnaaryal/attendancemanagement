@@ -101,7 +101,7 @@ const Dashboard = () => {
               <span className="text-[#4154F1] text-lg font-medium">
                 Attendance Report
               </span>{" "}
-              |This Month
+              | This Month
             </p>
           
           <RadarChart />

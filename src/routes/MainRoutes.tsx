@@ -1,6 +1,7 @@
 //Layout
 
-import MainLayout from "../layouts/MainLayout/MainLayout";
+import DashboardLayout from "../layouts/DashboardLayout";
+
 
 
 //Pages
@@ -8,10 +9,10 @@ import MainLayout from "../layouts/MainLayout/MainLayout";
 
 const MainRoutes = {
   path: "/",
-  element: <MainLayout />,
+  element: <DashboardLayout />,
   children: [
     {
-      path: "/account-creation-success",
+      path: "/attendancesheet",
       element: "",
     },
     

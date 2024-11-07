@@ -3,7 +3,7 @@ import React from 'react'
 const TopBar = () => {
   return (
     <div className="flex container h-[60px] justify-between w-full px-14  p-4 shadow-md">
-    <p>Attendify</p>
+    <p className='text-[#012970] font-bold text-2xl'>Attendify</p>
 
     <div className="flex gap-4 items-center ">
       <div className="relative">

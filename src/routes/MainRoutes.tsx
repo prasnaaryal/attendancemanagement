@@ -1,6 +1,7 @@
 //Layout
 
 import DashboardLayout from "../layouts/DashboardLayout";
+import AttendanceSheet from "../pages/manage/AttendanceSheet";
 
 
 
@@ -13,7 +14,7 @@ const MainRoutes = {
   children: [
     {
       path: "/attendancesheet",
-      element: "",
+      element: <AttendanceSheet/>,
     },
     
   ],

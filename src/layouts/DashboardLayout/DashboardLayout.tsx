@@ -5,10 +5,10 @@ import SideBar from "./components/SideBar";
 const DashboardLayout = () => {
   return (
     <div>
-     <TopBar/>
+      <TopBar />
 
-      <main className="flex-grow h-[calc(100vh-19rem)] lg:h-[calc(100vh-5rem)]  ">
-        <SideBar/>
+      <main className="flex flex-grow h-auto pt-1  ">
+        <SideBar />
         <Outlet />
       </main>
     </div>

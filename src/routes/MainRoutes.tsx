@@ -4,6 +4,7 @@ import DashboardLayout from "../layouts/DashboardLayout";
 import AttendanceSheet from "../pages/manage/AttendanceSheet";
 import Dashboard from "../pages/manage/Dashboard";
 import GenerateSheet from "../pages/manage/GenerateSheet";
+import Reports from "../pages/manage/Reports";
 
 //Pages
 
@@ -22,6 +23,10 @@ const MainRoutes = {
     {
       path: "/dashboard",
       element: <Dashboard />,
+    },
+    {
+      path: "/reports",
+      element: <Reports />,
     },
   ],
 };

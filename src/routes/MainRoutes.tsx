@@ -5,6 +5,7 @@ import AttendanceSheet from "../pages/manage/AttendanceSheet";
 import Dashboard from "../pages/manage/Dashboard";
 import GenerateSheet from "../pages/manage/GenerateSheet";
 import Reports from "../pages/manage/Reports";
+import Taken from "../pages/manage/Taken";
 
 //Pages
 
@@ -27,6 +28,10 @@ const MainRoutes = {
     {
       path: "/reports",
       element: <Reports />,
+    },
+    {
+      path: "/taken",
+      element: <Taken />,
     },
   ],
 };

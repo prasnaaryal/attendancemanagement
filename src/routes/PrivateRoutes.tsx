@@ -1,23 +1,21 @@
 //Layout
 
-import MainLayout from "../layouts/MainLayout/MainLayout";
-import Home from "../pages/manage/Home";
+import DashboardLayout from "../layouts/DashboardLayout";
 
+import AdminDash from "../pages/admin/AdminDash";
 
 //Pages
-
 
 // ==============================|| KYC FORM ROUTING ||============================== //
 
 const PrivateRoutes = {
-  path: "/manage",
-  element: <MainLayout />,
+  path: "/admin",
+  element: <DashboardLayout />,
   children: [
     {
-      path: "home",
-      element: <Home />,
+      path: "dashboard",
+      element: <AdminDash />,
     },
-    
   ],
 };
 

@@ -1,6 +1,7 @@
 //Layout
 
 import DashboardLayout from "../layouts/DashboardLayout";
+import AbscenceApplication from "../pages/admin/AbscenceApplication";
 
 import AdminDash from "../pages/admin/AdminDash";
 
@@ -16,6 +17,11 @@ const PrivateRoutes = {
       path: "dashboard",
       element: <AdminDash />,
     },
+    {
+      path: "absenceapplication",
+      element: <AbscenceApplication />,
+    },
+
   ],
 };
 

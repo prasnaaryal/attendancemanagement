@@ -7,8 +7,10 @@ import AddTeacher from "../pages/admin/AddTeacher";
 
 import AdminDash from "../pages/admin/AdminDash";
 import Reports from "../pages/admin/Reports";
+import Subject from "../pages/admin/Subject";
 import Taken from "../pages/admin/Taken";
 import Teacher from "../pages/admin/Teacher";
+
 
 //Pages
 
@@ -41,6 +43,10 @@ const PrivateRoutes = {
     {
       path: "addteacher",
       element: <AddTeacher/>,
+    },
+    {
+      path: "subject",
+      element: <Subject/>,
     },
 
 

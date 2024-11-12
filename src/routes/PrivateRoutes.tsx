@@ -1,7 +1,9 @@
 //Layout
 
-import DashboardLayout from "../layouts/DashboardLayout";
+import AdminLayout from "../layouts/AdminLayout/AdminLayout";
+
 import AbscenceApplication from "../pages/admin/AbscenceApplication";
+import AddTeacher from "../pages/admin/AddTeacher";
 
 import AdminDash from "../pages/admin/AdminDash";
 import Reports from "../pages/admin/Reports";
@@ -14,7 +16,7 @@ import Teacher from "../pages/admin/Teacher";
 
 const PrivateRoutes = {
   path: "/admin",
-  element: <DashboardLayout />,
+  element: <AdminLayout />,
   children: [
     {
       path: "dashboard",
@@ -35,6 +37,10 @@ const PrivateRoutes = {
     {
       path: "teacher",
       element: <Teacher/>,
+    },
+    {
+      path: "addteacher",
+      element: <AddTeacher/>,
     },
 
 

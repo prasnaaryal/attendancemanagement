@@ -16,7 +16,7 @@ const AbscenceApplication = () => {
           </p>
         </div>
 
-        <button className="bg-[#4154F1] text-white rounded-lg w-[90px] h-[40px] flex items-center justify-center mt-4 text-xs">
+        <button className="bg-[#4154F1] text-white rounded-lg w-[100px] h-[40px] flex items-center justify-center mt-4 text-xs">
           Send Application
         </button>
       </div>

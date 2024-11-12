@@ -3,6 +3,7 @@
 import AdminLayout from "../layouts/AdminLayout/AdminLayout";
 
 import AbscenceApplication from "../pages/admin/AbscenceApplication";
+import AddStudent from "../pages/admin/AddStudent";
 import AddTeacher from "../pages/admin/AddTeacher";
 
 import AdminDash from "../pages/admin/AdminDash";
@@ -44,6 +45,10 @@ const PrivateRoutes = {
     {
       path: "addteacher",
       element: <AddTeacher/>,
+    },
+    {
+      path: "addstudent",
+      element: <AddStudent/>,
     },
     {
       path: "subject",

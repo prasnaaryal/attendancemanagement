@@ -2,6 +2,7 @@
 
 import Login from "../pages/Auth/Login";
 import MainLayout from "../layouts/MainLayout/MainLayout";
+import StudentLogin from "../pages/Auth/StudentLogin";
 
 //Pages
 
@@ -16,6 +17,10 @@ const AuthenticationRoutes = {
     {
       path: "/login",
       element: <Login />,
+    },
+    {
+      path: "/studentlogin",
+      element: <StudentLogin />,
     },
     
   ],

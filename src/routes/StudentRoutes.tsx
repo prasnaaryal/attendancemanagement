@@ -2,6 +2,7 @@
 
 import StudentLayout from "../layouts/StudentLayout/StudentLayout";
 import AbscenceApplication from "../pages/student/AbsenceApplication";
+import AbsentLetter from "../pages/student/AbsentLetter";
 
 
 
@@ -19,6 +20,11 @@ const StudentRoutes = {
       path: "absenceapplication",
       element: <AbscenceApplication />,
     },
+    {
+        path: "absentletter",
+        element: <AbsentLetter />,
+      },
+     
    
 
   ],

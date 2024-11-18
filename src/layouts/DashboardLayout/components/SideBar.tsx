@@ -1,20 +1,22 @@
 import { ClipboardList, FileSpreadsheet, LogOut } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const SideBar = () => {
+ 
   return (
     <div className="container w-[250px] h-[841px] shadow-md space-y-4 p-6">
       <div className="">
         <p className="text-[#899BBD] text-xs font-semibold">TRACK</p>
-        <div className="bg-[#F6F9FF] p-2">
+        <Link to="/attendancesheet"  className="bg-[#F6F9FF] p-2">
           <p className="flex text-[#4154F1] font-semibold text-sm">
             <FileSpreadsheet className="text-[#012970] " /> Attendance Sheet
           </p>
-        </div>
+        </Link>
       </div>
 
       <div>
         <p className="text-[#899BBD] text-xs font-semibold">ANALYZE</p>
-        <div className="flex p-2">
+        <Link to="/dashboard" className="flex p-2">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="2em"
@@ -28,16 +30,16 @@ const SideBar = () => {
             ></path>
           </svg>
           <p className="text-[#012970] font-semibold text-sm">Dashboard</p>
-        </div>
-        <div className="flex p-2">
+        </Link>
+        <Link to="/reports" className="flex p-2">
           <ClipboardList className="text-[#012970] " />
           <p className="text-[#012970] font-semibold text-sm">Report</p>
-        </div>
+        </Link>
       </div>
 
       <div>
         <p className="text-[#899BBD] text-xs font-semibold">MANAGE</p>
-        <div className="flex p-2">
+        <Link to="/student"  className="flex p-2">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="26"
@@ -50,15 +52,15 @@ const SideBar = () => {
             />
           </svg>
           <p className="text-[#012970] font-semibold text-sm">Student</p>
-        </div>
+        </Link>
       </div>
 
       <div>
         <p className="text-[#899BBD] text-xs font-semibold">CHAL CHLA NIKAL</p>
-        <div className="flex p-2">
+        <Link to="/logout"  className="flex p-2">
           <LogOut className="text-[#012970] " />
           <p className="text-[#012970] font-semibold text-sm">Logout</p>
-        </div>
+        </Link>
       </div>
     </div>
   );

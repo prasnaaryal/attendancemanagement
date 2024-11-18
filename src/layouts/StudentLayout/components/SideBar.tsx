@@ -1,4 +1,5 @@
 import { FileSpreadsheet, LogOut } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const SideBar = () => {
   return (
@@ -32,7 +33,7 @@ const SideBar = () => {
 
       <div>
         <p className="text-[#899BBD] text-xs font-semibold">REQUEST</p>
-        <div className="flex p-2 gap-2">
+        <Link to="/student/absenceapplication" className="flex p-2 gap-2">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"
@@ -46,7 +47,7 @@ const SideBar = () => {
           </svg>
 
           <p className="text-[#012970] font-semibold text-sm">Absent Application</p>
-        </div>
+        </Link>
         <div className="flex p-2 gap-2">
           <svg
             xmlns="http://www.w3.org/2000/svg"

@@ -1,9 +1,14 @@
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { useNavigate } from "react-router-dom";
 
 const AttendanceSheet = () => {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+  const navigate = useNavigate();
+  const handleNavigate = (path: string) => {
+    navigate(path);
+  };
 
   return (
     <div className="bg-[#F6F9FF] container p-8">
@@ -84,10 +89,7 @@ const AttendanceSheet = () => {
 
           {/* Date Picker with Right Arrow */}
           <div className="relative w-[164px] h-[58px] bg-gray-50 border border-gray-300 rounded-lg p-2.5 dark:bg-gray-700 dark:border-gray-600">
-            <label
-              htmlFor="date"
-              className="block text-sm  text-[#444444]"
-            >
+            <label htmlFor="date" className="block text-sm  text-[#444444]">
               Date
             </label>
             <DatePicker
@@ -116,7 +118,10 @@ const AttendanceSheet = () => {
             </div>
           </div>
 
-          <button className="bg-[#4154F1] text-white rounded-lg w-[102px] h-[40px] flex items-center justify-center mt-4 text-xs">
+          <button
+            onClick={() => handleNavigate("/attendancesheet/generatesheet")}
+            className="bg-[#4154F1] text-white rounded-lg w-[102px] h-[40px] flex items-center justify-center mt-4 text-xs"
+          >
             Generate Sheet
           </button>
         </div>

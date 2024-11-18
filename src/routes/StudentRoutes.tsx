@@ -1,8 +1,8 @@
 //Layout
 
 import StudentLayout from "../layouts/StudentLayout/StudentLayout";
-import AbscenceApplication from "../pages/student/AbsenceApplication";
-import AbsentLetter from "../pages/student/AbsentLetter";
+import AbscenceApplication from "../pages/manage/student/AbsenceApplication";
+import AbsentLetter from "../pages/manage/student/AbsentLetter";
 
 
 

@@ -1,7 +1,13 @@
 import { SquarePen, Trash2 } from "lucide-react";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const Teacher = () => {
+  const navigate=useNavigate();
+   
+  const handleNavigate=(path:string)=>{
+    navigate(path)
+  }
   return (
     <div className="container  bg-[#F6F9FF] p-8 space-y-12">
       <div className="flex justify-between">
@@ -15,7 +21,9 @@ const Teacher = () => {
           </p>
         </div>
 
-        <button className="bg-[#4154F1] text-white rounded-lg w-[90px] h-[40px] flex items-center justify-center mt-4 text-xs">
+        <button onClick={()=>
+          handleNavigate("/admin/addteacher")
+        }className="bg-[#4154F1] text-white rounded-lg w-[90px] h-[40px] flex items-center justify-center mt-4 text-xs">
           Add Teacher
         </button>
       </div>

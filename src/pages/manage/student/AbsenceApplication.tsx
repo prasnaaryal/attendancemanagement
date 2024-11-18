@@ -1,6 +1,11 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 const AbscenceApplication = () => {
+  const navigate=useNavigate();
+  const handleNavigate=(path:string)=>{
+    navigate(path)
+  }
   return (
     <div className="container  bg-[#F6F9FF] p-8 space-y-12">
       <div className="flex justify-between">
@@ -16,7 +21,7 @@ const AbscenceApplication = () => {
           </p>
         </div>
 
-        <button className="bg-[#4154F1] text-white rounded-lg w-[100px] h-[40px] flex items-center justify-center mt-4 text-xs">
+        <button onClick={()=> handleNavigate("/student/absentletter")} className="bg-[#4154F1] text-white rounded-lg w-[100px] h-[40px] flex items-center justify-center mt-4 text-xs">
           Send Application
         </button>
       </div>

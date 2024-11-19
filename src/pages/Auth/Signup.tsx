@@ -1,65 +1,87 @@
+import axios from "../../config/axios";
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { postDataRequest } from "../../redux/api/apiActions";
+import { RootState } from "../../redux/rootReducer";
+
 import { useForm } from "react-hook-form";
 
 type FormData = {
-  firstName: string;
-  lastName: string;
-  middleName: string;
+  first_name: string;
+  last_name: string;
+  middle_name: string;
   email: string;
   password: string;
+  redirect_url: string;
 };
+
 const Signup = () => {
+  const dispatch = useDispatch();
+  const { loading, data, error } = useSelector((state: RootState) => state.api);
+
   const {
     register,
-    handleSubmit,
     formState: { errors },
   } = useForm<FormData>();
 
-  const onSubmit = async (data: FormData) => {
-    // Mark function as async
-    try {
-      const response = await fetch(
-        "https://dev.stockdigit.com/api/auth/create-account/",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          // using post because we are creating data
-
-          body: JSON.stringify(data),
-        }
-      );
-      if (response.ok) {
-        const result = await response.json();
-        console.log("Success:", result);
-        alert("Account created successfully!");
-      } else {
-        const errorData = await response.json();
-        console.error("Error:", errorData);
-        alert("Failed to create account. Check console for details.");
-      }
-    } catch (error) {
-      console.error("Network Error:", error);
-      alert("A network error occurred. Please try again.");
-    }
+  const handleSubmit = (formData: FormData) => {
+    const payload = {
+      ...formData,
+      redirect_url: "https://www.instagram.com/direct/t/17844355349713509/"
+    };
+    dispatch(postDataRequest(payload));
   };
+
+  // const onSubmit = async (data: FormData) => {
+  //   try {
+  //     const response = await axios.post(
+  //       "/auth/create-account/",
+
+  //       {
+  //         ...data,
+  //         redirect_url: "https://www.instagram.com/direct/t/17844355349713509/",
+  //       }
+  //     );
+  //     if (response.status === 200) {
+  //       alert("Account created successfully!");
+  //     } else {
+  //       alert("Failed to create account. Check console for details.");
+  //     }
+  //   } catch (error) {
+  //     console.error("Network Error:", error);
+  //     alert("A network error occurred. Please try again.");
+  //   }
+  // };
 
   return (
     <div className="max-w-md mx-auto mt-10 p-6 border rounded-lg shadow-md bg-white">
       <h2 className="text-2xl font-bold text-center mb-6">Sign Up</h2>
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-        {/* First Name */}
-        <div>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          // You'll need to pass the form data to handleSubmit
+          handleSubmit({
+            first_name: e.currentTarget.first_name.value,
+            last_name: e.currentTarget.last_name.value,
+            middle_name: e.currentTarget.middle_name.value,
+            email: e.currentTarget.email.value,
+            password: e.currentTarget.password.value,
+            redirect_url: "" // This will be added in handleSubmit
+          });
+        }}
+        className="space-y-6"
+      >
+          {/* First Name */}
+          <div>
           <label
-            htmlFor="firstName"
+            htmlFor="first_name"
             className="block mb-1 font-medium text-gray-700"
           >
             First Name
           </label>
           <input
             type="text"
-            {...register("firstName", {
+            {...register("first_name", {
               required: true,
             })}
             className="w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -70,15 +92,15 @@ const Signup = () => {
         {/* Middle Name */}
         <div>
           <label
-            htmlFor="middleName"
+            htmlFor="middle_name"
             className="block mb-1 font-medium text-gray-700"
           >
             Middle Name
           </label>
           <input
             type="text"
-            id="middleName"
-            {...register("middleName", {
+            id="middle_name"
+            {...register("middle_name", {
               required: true,
             })}
             className="w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -89,15 +111,15 @@ const Signup = () => {
         {/* Last Name */}
         <div>
           <label
-            htmlFor="lastName"
+            htmlFor="last_name"
             className="block mb-1 font-medium text-gray-700"
           >
             Last Name
           </label>
           <input
             type="text"
-            id="lastName"
-            {...register("lastName", {
+            id="last_name"
+            {...register("last_name", {
               required: true,
             })}
             className="w-full px-3 py-2 border rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"

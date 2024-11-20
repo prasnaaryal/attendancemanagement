@@ -1,6 +1,46 @@
 import React from "react";
+import { useForm } from "react-hook-form";
+
+interface LoginData {
+  email: string;
+  password: string;
+}
 
 const Login = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<LoginData>();
+
+  const onSubmit = async (data: LoginData) => {
+    try {
+      const response = await fetch(
+        "https://dev.stockdigit.com/api/auth/login/",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        }
+      );
+
+      if (response.ok) {
+        const result = await response.json();
+        console.log("Account logged in:", result);
+        alert("Account logged in successfully!");
+      } else {
+        const errorData = await response.json();
+        console.error("Error:", errorData);
+        alert("Error logging account. Check console for details.");
+      }
+    } catch (error) {
+      console.error("Network Error:", error);
+      alert("Failed to log in account due to a network error.");
+    }
+  };
+
   return (
     <div className="container mx-auto min-h-screen grid grid-cols-12 bg-[#EDF1F7] p-8 items-center">
       {/* Left Section */}
@@ -43,24 +83,54 @@ const Login = () => {
           </div>
 
           {/* Login Form */}
-          <form>
+          <form onSubmit={handleSubmit(onSubmit)}>
             <div className="mb-4">
-              <label className="block text-sm mb-2 text-[#212529]">
-                Username
+              <label
+                htmlFor="email"
+                className="block text-sm mb-2 text-[#212529]"
+              >
+                Email
               </label>
               <input
+                id="email"
                 type="text"
+                {...register("email", {
+                  required: "Email is required",
+                  pattern: {
+                    value: /^[^@ ]+@[^@ ]+\.[^@ ]+$/,
+                    message: "Enter a valid email",
+                  },
+                })}
                 className="w-full border border-gray-300 rounded px-3 py-2  focus:outline-none focus:border-blue-500"
               />
+              {errors.email && (
+                <p className="text-red-500 text-sm">{errors.email.message}</p>
+              )}
             </div>
             <div className="mb-4">
-              <label className="block text-sm  mb-2 text-[#212529]">
+              <label
+                htmlFor="password"
+                className="block text-sm  mb-2 text-[#212529]"
+              >
                 Password
               </label>
               <input
+                id="password"
                 type="password"
+                {...register("password", {
+                  required: "Password is required",
+                  minLength: {
+                    value: 6,
+                    message: "Password must be at least 6 characters",
+                  },
+                })}
                 className="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:border-blue-500"
               />
+              {errors.password && (
+                <p className="text-red-500 text-sm">
+                  {errors.password.message}
+                </p>
+              )}
             </div>
             <div className="flex items-center mb-4">
               <input

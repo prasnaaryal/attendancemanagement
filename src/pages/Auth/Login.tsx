@@ -1,3 +1,4 @@
+import axios from "axios";
 import React from "react";
 import { useForm } from "react-hook-form";
 
@@ -15,24 +16,17 @@ const Login = () => {
 
   const onSubmit = async (data: LoginData) => {
     try {
-      const response = await fetch(
+      const response = await axios.post (
         "https://dev.stockdigit.com/api/auth/login/",
         {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(data),
+          ...data,redirect_url:"https://www.instagram.com/direct/t/17844355349713509/"
         }
       );
 
-      if (response.ok) {
-        const result = await response.json();
-        console.log("Account logged in:", result);
+      if (response.status===200) {
+        
         alert("Account logged in successfully!");
       } else {
-        const errorData = await response.json();
-        console.error("Error:", errorData);
         alert("Error logging account. Check console for details.");
       }
     } catch (error) {

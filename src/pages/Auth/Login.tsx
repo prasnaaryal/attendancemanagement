@@ -1,38 +1,35 @@
-import axios from "axios";
+import axios from "../../config/axios";
 import React from "react";
 import { useForm } from "react-hook-form";
+import { useDispatch, useSelector } from "react-redux";
+import { loginDataRequest } from "../../redux/api/apiActions";
+import { RootState } from "../../redux/rootReducer";
+
 
 interface LoginData {
   email: string;
   password: string;
+  redirect_url: string;
+
 }
 
 const Login = () => {
+
+  const dispatch = useDispatch();
+  const { loading, data, error } = useSelector((state: RootState) => state.api);
+
   const {
     register,
-    handleSubmit,
+    
     formState: { errors },
   } = useForm<LoginData>();
 
-  const onSubmit = async (data: LoginData) => {
-    try {
-      const response = await axios.post (
-        "https://dev.stockdigit.com/api/auth/login/",
-        {
-          ...data,redirect_url:"https://www.instagram.com/direct/t/17844355349713509/"
-        }
-      );
-
-      if (response.status===200) {
-        
-        alert("Account logged in successfully!");
-      } else {
-        alert("Error logging account. Check console for details.");
-      }
-    } catch (error) {
-      console.error("Network Error:", error);
-      alert("Failed to log in account due to a network error.");
-    }
+  const handleSubmit = (loginData: LoginData) => {
+    const payload = {
+      ...loginData,
+      redirect_url: "https://www.instagram.com/direct/t/17844355349713509/"
+    };
+    dispatch(loginDataRequest(payload));
   };
 
   return (
@@ -77,7 +74,18 @@ const Login = () => {
           </div>
 
           {/* Login Form */}
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          // You'll need to pass the form data to handleSubmit
+          handleSubmit({
+
+            email: e.currentTarget.email.value,
+            password: e.currentTarget.password.value,
+            redirect_url: "" // This will be added in handleSubmit
+          });
+        }}
+        className="space-y-6">
             <div className="mb-4">
               <label
                 htmlFor="email"

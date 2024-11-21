@@ -5,6 +5,9 @@ import {
   postDataRequest,
   postDataSuccess,
   postDataFailure,
+  loginDataRequest,
+  loginDataSuccess,
+  loginDataFailure
 } from "./apiActions";
 
 
@@ -12,6 +15,11 @@ import {
 function postDataToApi(data: any) {
   return axios.post("/auth/create-account/", data);
 }
+function loginDataToApi(data: any) {
+  return axios.post("/auth/login/", data);
+}
+
+
 
 
 
@@ -24,6 +32,19 @@ function* postDataSaga(action: any): Generator {
   }
 }
 
+
+function* loginDataSaga(action: any): Generator {
+  try {
+    const response: any = yield call(loginDataToApi, action.payload);
+    yield put(loginDataSuccess(response.data));
+  } catch (error: any) {
+    yield put(loginDataFailure(error.message));
+  }
+}
+
 export function* watchApiSaga() {
   yield takeEvery(postDataRequest, postDataSaga);
+  yield takeEvery(loginDataRequest, loginDataSaga);
 }
+
+

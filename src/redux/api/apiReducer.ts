@@ -1,5 +1,7 @@
 import {
-
+  LOGIN_DATA_REQUEST,
+  LOGIN_DATA_SUCCESS,
+  LOGIN_DATA_FAILURE,
   POST_DATA_REQUEST,
   POST_DATA_SUCCESS,
   POST_DATA_FAILURE,
@@ -17,10 +19,19 @@ const apiReducer = (state = initialState, action: ApiActionTypes): any => {
     case POST_DATA_REQUEST:
       return { ...state, loading: true, error: null };
 
+    case LOGIN_DATA_REQUEST:
+      return { ...state, loading: true, error: null };
+
     case POST_DATA_SUCCESS:
       return { ...state, loading: false, data: action.payload };
 
+    case LOGIN_DATA_SUCCESS:
+      return { ...state, loading: false, data: action.payload };
+
     case POST_DATA_FAILURE:
+      return { ...state, loading: false, error: action.payload };
+
+    case LOGIN_DATA_FAILURE:
       return { ...state, loading: false, error: action.payload };
 
     default:

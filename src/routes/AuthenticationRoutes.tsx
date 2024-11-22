@@ -4,6 +4,7 @@ import Login from "../pages/Auth/Login";
 import MainLayout from "../layouts/MainLayout/MainLayout";
 import StudentLogin from "../pages/Auth/StudentLogin";
 import Signup from "../pages/Auth/Signup";
+import YachtTable from "../pages/Auth/YatchTable";
 
 //Pages
 
@@ -26,6 +27,10 @@ const AuthenticationRoutes = {
     {
       path: "/signup",
       element: <Signup />,
+    },
+    {
+      path: "/yatchtable",
+      element: <YachtTable />,
     }
   ],
 };

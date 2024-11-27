@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from "react";
 
-interface Yacht {
-  name: string;
-  type: string;
-
-  sailingCountries: string;
-}
-
 const YachtTable = () => {
   const [yachts, setYachts] = useState<any[]>([]);
+
+  interface Yacht {
+    name: string;
+    yachtType: { name: string };
+    sailingCountries: { name: string }[];
+  }
 
   const fetchYachts = async () => {
     try {
@@ -16,18 +15,15 @@ const YachtTable = () => {
         "https://api-pre-prod.exclusivegulets.com/api/es/all_yachts"
       );
       const data = await response.json();
-      console.log("data", data);
-      setYachts(data);
+      setYachts(data.items);
     } catch (error) {
-      console.error("Failed to fetch yachts:", error); // Error handling
+      console.error("Failed to fetch yachts:", error);
     }
   };
 
   useEffect(() => {
-    fetchYachts(); // Execute fetchYachts function on component mount
+    fetchYachts();
   }, []);
-
-  console.log("yachts", yachts); // The empty dependency array means this effect runs only once after the initial render
 
   return (
     <div className="overflow-x-auto">
@@ -41,21 +37,23 @@ const YachtTable = () => {
               Yacht Type
             </th>
             <th className="px-6 py-3 text-left font-medium text-gray-900">
-              Sailing Country
+              Sailing Countries
             </th>
           </tr>
         </thead>
         <tbody className="bg-white divide-y divide-gray-200">
-          {yachts.items.map((yacht, index) => (
+          {yachts.map((yacht, index) => (
             <tr key={index}>
               <td className="px-6 py-4 whitespace-nowrap text-gray-900">
                 {yacht.name}
               </td>
               <td className="px-6 py-4 whitespace-nowrap text-gray-900">
-                {yacht.yachtType}
+                {yacht.yachtType?.name}
               </td>
               <td className="px-6 py-4 whitespace-nowrap text-gray-900">
-                {yacht.sailingCountries}
+                {yacht.sailingCountries
+                  .map((country) => country.name) // Extract country names
+                  .join(", ")} {/* Join country names into a single string */}
               </td>
             </tr>
           ))}

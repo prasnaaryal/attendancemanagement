@@ -1,25 +1,53 @@
 // Pagination.js
-import React from 'react';
+import React, { useState } from "react";
 
-const Pagination = ({ length, postsPerPage, handlePagination }) => {
-  const pageNumbers = [];
+const Pagination = ({ postsPerPage, length, handlePagination }: any) => {
+  const [currentPage, setCurrentPage] = useState(1);
+  const totalPages = Math.ceil(length / postsPerPage);
 
-  for (let i = 1; i <= Math.ceil(length / postsPerPage); i++) {
-    pageNumbers.push(i);
-  }
+  const handlePageChange = (pageNumber: any) => {
+    if (pageNumber < 1 || pageNumber > totalPages) return;
+    setCurrentPage(pageNumber);
+    handlePagination(pageNumber);
+    console.log(pageNumber)
+  };
+
+  if (totalPages <= 1) return null;
 
   return (
-    <nav>
-      <ul className='pagination'>
-        {pageNumbers.map(number => (
-          <li key={number} className='page-item'>
-            <button onClick={() => handlePagination(number)} className='page-link'>
-              {number}
-            </button>
-          </li>
+    <div className="flex items-center justify-center gap-2 my-4">
+      <button
+        onClick={() => handlePageChange(currentPage - 1)}
+        disabled={currentPage === 1}
+        className="p-2"
+      >
+        <p>less</p>
+      </button>
+
+      <div className="flex gap-1">
+        {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+          <button
+            key={page}
+            onClick={() => handlePageChange(page)}
+            className={`px-3 py-1 rounded ${
+              page === currentPage
+                ? "bg-blue-500 text-white"
+                : "hover:bg-gray-100"
+            }`}
+          >
+            {page}
+          </button>
         ))}
-      </ul>
-    </nav>
+      </div>
+
+      <button
+        onClick={() => handlePageChange(currentPage + 1)}
+        disabled={currentPage === totalPages}
+        className="p-2"
+      >
+        <p>More</p>{" "}
+      </button>
+    </div>
   );
 };
 

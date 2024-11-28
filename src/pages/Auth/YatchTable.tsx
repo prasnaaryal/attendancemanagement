@@ -1,7 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import {yatchDataRequest} from "../../redux/api/Yatchtable/YatchActions"
-
 import axios from "axios";
 import Pagination from "./components/Pagination";
 
@@ -9,10 +6,6 @@ const YachtTable = () => {
   const [yachts, setYachts] = useState<any[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(5);
-  const dispatch = useDispatch();
-  const {yatch}=useSelector(
-    
-  )
 
   interface Yacht {
     name: string;
@@ -20,13 +13,53 @@ const YachtTable = () => {
     sailingCountries: { name: string }[];
   }
 
+  //   const fetchYachts = async () => {
+  //     try {
+  //       const response = await fetch(
+  //         "https://api-pre-prod.exclusivegulets.com/api/es/all_yachts"
+  //       );
+  //       const data = await response.json();
+  //       setYachts(data.items);
+  //     } catch (error) {
+  //       console.error("Failed to fetch yachts:", error);
+  //     }
+  //   };
+
+  //   useEffect(() => {
+  //     fetchYachts();
+  //   }, []);
+
+  // creating axios instance with base config
+
+  const axiosConfig = axios.create({
+    baseURL: `${import.meta.env.VITE_BASE_URL}`,
+    headers: {
+      accept: "application/json",
+      'Content-Type': 'application/json',
+    },
+  });
+
+  // fetch data using axios
+
+  const fetchYachts = async () => {
+    try {
+      const response = await axiosConfig.get("/api/es/all_yachts");
+      setYachts(response.data.items);
+      console.log(setYachts);
+    } catch (error) {
+      console.error("Failed to fetch yachts:", error);
+    }
+  };
   useEffect(() => {
-    dispatch(yatchDataRequest())
-  }, [dispatch]);
+    fetchYachts();
+  }, []);
 
   const indexOfLastYacht = currentPage * postsPerPage;
   const indexOfFirstYacht = indexOfLastYacht - postsPerPage;
   const currentYachts = yachts.slice(indexOfFirstYacht, indexOfLastYacht);
+
+
+ 
 
   return (
     <div className="overflow-x-auto">

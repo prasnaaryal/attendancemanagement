@@ -1,8 +1,10 @@
 import { combineReducers } from "@reduxjs/toolkit";
-import apiReducer from "./api/apiReducer";
+import yatchReducer from "./api/Yatchtable/YatchReducer";
+import apiReducer from "./api/auth/apiReducer";
 
 const rootReducer = combineReducers({
   api: apiReducer,
+  yatch: yatchReducer,
 });
 
 export default rootReducer;

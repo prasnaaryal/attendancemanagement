@@ -1,11 +1,24 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Pagination from "./components/Pagination";
-
+// const users = [
+//   { firstName: "John", id: 1 },
+//   { firstName: "Emily", id: 2 },
+//   { firstName: "Michael", id: 3 },
+//   { firstName: "Sarah", id: 4 },
+//   { firstName: "David", id: 5 },
+//   { firstName: "Jessica", id: 6 },
+//   { firstName: "Daniel", id: 7 },
+//   { firstName: "Olivia", id: 8 },
+//   { firstName: "Matthew", id: 9 },
+//   { firstName: "Sophia", id: 10 }
+// ]
 const YachtTable = () => {
   const [yachts, setYachts] = useState<any[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage] = useState(5);
+  const [searchItem, setSearchItem] = useState("");
+  const [filteredYacht, setFilteredYacht] = useState([]);
 
   interface Yacht {
     name: string;
@@ -13,29 +26,11 @@ const YachtTable = () => {
     sailingCountries: { name: string }[];
   }
 
-  //   const fetchYachts = async () => {
-  //     try {
-  //       const response = await fetch(
-  //         "https://api-pre-prod.exclusivegulets.com/api/es/all_yachts"
-  //       );
-  //       const data = await response.json();
-  //       setYachts(data.items);
-  //     } catch (error) {
-  //       console.error("Failed to fetch yachts:", error);
-  //     }
-  //   };
-
-  //   useEffect(() => {
-  //     fetchYachts();
-  //   }, []);
-
-  // creating axios instance with base config
-
   const axiosConfig = axios.create({
     baseURL: `${import.meta.env.VITE_BASE_URL}`,
     headers: {
       accept: "application/json",
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
   });
 
@@ -54,15 +49,38 @@ const YachtTable = () => {
     fetchYachts();
   }, []);
 
-  const indexOfLastYacht = currentPage * postsPerPage;
-  const indexOfFirstYacht = indexOfLastYacht - postsPerPage;
-  const currentYachts = yachts.slice(indexOfFirstYacht, indexOfLastYacht);
+  const handleInputChange = (e) => {
+    const searchTerm = e.target.value;
+    setSearchItem(searchTerm);
 
+    const filteredItems = yachts.filter((user) =>
+      user.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
 
- 
+    setFilteredYacht(filteredItems);
+    setCurrentPage(1);
+  };
+
+  const getCurrentYacht = () => {
+    const indexOfLastYacht = currentPage * postsPerPage;
+    const indexOfFirstYacht = indexOfLastYacht - postsPerPage;
+    const displayYacht = searchItem ? filteredYacht : yachts;
+    return displayYacht.slice(indexOfFirstYacht, indexOfLastYacht);
+  };
+
+  const currentYachts = getCurrentYacht();
 
   return (
     <div className="overflow-x-auto">
+      <div>
+        <input
+          type="text"
+          value={searchItem}
+          onChange={handleInputChange}
+          placeholder="Type to search"
+        />
+      </div>
+
       <table className="min-w-full text-sm divide-y divide-gray-200">
         <thead className="bg-gray-50">
           <tr>
